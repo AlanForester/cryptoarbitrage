@@ -1,0 +1,4 @@
+package: CryptoArbitrage
+import:
+- package: github.com/sevlyar/go-daemon
+  version: v0.1.1
