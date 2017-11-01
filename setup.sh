@@ -1,9 +1,9 @@
 #!/bin/bash
-export GOPATH=`pwd`:`pwd`/../..
+BASE_GOPATH=$(dirname "$(dirname `pwd`)")
+export GOPATH=`pwd`:${BASE_GOPATH}
+echo $GOPATH
 export GOROOT=`which go`/../../
-export PATH=$PATH:$GOPATH/bin
 if [ -z `which glide` ]
 then
-    curl https://glide.sh/get | sh
+    curl https://glide.sh/get | sh && glide up
 fi
-glide up
