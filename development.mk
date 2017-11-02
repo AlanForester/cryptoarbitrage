@@ -1,5 +1,6 @@
 .PHONY: run
-setup_env := { export GOPATH="$$(pwd):$$(pwd)/../.."; }; cd -;
+pwd := $$(pwd)
+setup_env := { export GOPATH="$(pwd):$(pwd)/../.."; };
 
 run:
 	bash -c ' $(setup_env) \

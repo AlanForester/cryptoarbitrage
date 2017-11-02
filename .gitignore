@@ -37,3 +37,7 @@ _testmain.go
 /src/
 /pkg/
 /bin/
+/deploy/build/*
+/deploy/releases/*
+!.getkeep
+

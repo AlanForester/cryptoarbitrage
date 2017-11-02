@@ -1,9 +1,9 @@
 all: $(NAME)
 $(NAME): *.go
-	go build -v
+	go build -o ./deploy/build/$(NAME) -v
 
 release:
-	mkdir -p $(NAME)-"$(VERSION)"/src/$(NAME)
+	mkdir -p deploy/releases/$(NAME)-"$(VERSION)"/src/$(NAME)
 
 	rsync -avzr --delete \
 		--filter='- $(NAME)-*' \
@@ -15,6 +15,6 @@ release:
 		--filter='- .*' \
 		--filter='- *~' \
 		--filter='- *.org' \
-		. $(NAME)-"$(VERSION)"/src/$(NAME)
+		. deploy/releases/$(NAME)-"$(VERSION)"/src/$(NAME)
 
-	tar czf $(NAME)-"$(VERSION)".tgz $(NAME)-"$(VERSION)"
+	tar czf deploy/releases/$(NAME)-"$(VERSION)".tgz $(NAME)-"$(VERSION)"
