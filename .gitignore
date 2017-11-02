@@ -33,11 +33,9 @@ _testmain.go
 *~
 .DS_Store
 .idea
-
 /src/
 /pkg/
 /bin/
 /deploy/build/*
 /deploy/releases/*
-!.getkeep
-
+!.gitkeep
