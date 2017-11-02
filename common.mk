@@ -10,6 +10,7 @@ release:
 		--filter='- /$(NAME)' \
 		--filter='+ /.git/' \
 		--filter='+ /.gitignore/' \
+		--filter='+ /releases/' \
 		--filter='+ /glide.lock/' \
 		--filter='+ /README.MD/' \
 		--filter='- .*' \
