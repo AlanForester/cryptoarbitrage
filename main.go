@@ -1,7 +1,8 @@
 package main
 
-import "fmt"
-
+import (
+	"CryptoArbitrage/services"
+)
 func main() {
-	fmt.Printf("hello, world\n")
+	new(services.Application).Run()
 }
