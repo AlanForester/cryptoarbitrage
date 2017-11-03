@@ -1,19 +1,22 @@
 package helpers
 
 import (
-	"github.com/sevlyar/go-daemon"
+	goDaemon "github.com/sevlyar/go-daemon"
 	. "CryptoArbitrage/helpers/arg-parser/cli-args"
 	"log"
 	"syscall"
 	"os"
+	. "CryptoArbitrage/helpers/arg-parser"
 )
 
-type Daemon struct {
-	arg DaemonArgument
+var Daemon DaemonModel
+
+type DaemonModel struct {
+	arg DaemonArgumentModel
 }
 
-func (dc *Daemon) getContext() *daemon.Context {
-	return &daemon.Context{
+func (dc *DaemonModel) getContext() *goDaemon.Context {
+	return &goDaemon.Context{
 		PidFileName: "pids/application.pid",
 		PidFilePerm: 0644,
 		LogFileName: "logs/application.log",
@@ -24,13 +27,13 @@ func (dc *Daemon) getContext() *daemon.Context {
 	}
 }
 
-func (dc *Daemon) start(f func()) {
+func (dc *DaemonModel) Start(f func()) {
 
-	daemon.AddCommand(daemon.StringFlag(dc.arg.Flag, "stop"), syscall.SIGQUIT, dc.termHandler)
+	goDaemon.AddCommand(goDaemon.StringFlag(dc.arg.Flag, "stop"), syscall.SIGQUIT, dc.termHandler)
 
 	cntxt := dc.getContext()
 
-	if len(daemon.ActiveFlags()) > 0 {
+	if len(goDaemon.ActiveFlags()) > 0 {
 		d, err := cntxt.Search()
 		if err != nil {
 			if err.Error() == "open pids/application.pid: no such file or directory" {
@@ -39,7 +42,7 @@ func (dc *Daemon) start(f func()) {
 				log.Fatalln("Unable send signal to the daemon:", err)
 			}
 		}
-		daemon.SendCommands(d)
+		goDaemon.SendCommands(d)
 		if dc.arg.CheckValue("stop") {
 			log.Println("Daemon has been stoped.")
 		}
@@ -59,20 +62,22 @@ func (dc *Daemon) start(f func()) {
 
 	go f()
 
-	err = daemon.ServeSignals()
+	err = goDaemon.ServeSignals()
 	if err != nil {
 		log.Println("Error:", err)
 	}
 	log.Println("Daemon terminated.")
 }
 
-func (dc *Daemon) termHandler(sig os.Signal) error {
+func (dc *DaemonModel) termHandler(sig os.Signal) error {
 	log.Println("Terminating...")
-	return daemon.ErrStop
+	return goDaemon.ErrStop
 }
 
-func StartDaemon(flag DaemonArgument, f func()) {
-	dh := new(Daemon)
-	dh.arg = flag
-	dh.start(f)
+func init() {
+	if Daemon == (DaemonModel{}) {
+		dh := new(DaemonModel)
+		dh.arg = ArgumentParser.Daemon
+		Daemon = *dh
+	}
 }

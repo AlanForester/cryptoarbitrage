@@ -2,23 +2,31 @@ package services
 
 import (
 	"log"
-	"CryptoArbitrage/helpers/arg-parser"
-	"CryptoArbitrage/helpers"
+	. "CryptoArbitrage/helpers/arg-parser"
+	. "CryptoArbitrage/helpers"
 )
 
-type Application struct {}
+var Application *ApplicationModel
 
-func (a *Application) Loader() {
-	args := arg_parser.NewArgumentParser()
-	if args.Daemon.IsUsed() {
+type ApplicationModel struct {}
+
+func (a *ApplicationModel) Loader() {
+	log.Println(ArgumentParser.Daemon.IsUsed())
+	if ArgumentParser.Daemon.IsUsed() {
 		log.Println("Program running in daemon mode...")
-		helpers.StartDaemon(args.Daemon, a.start)
+		Daemon.Start(a.start)
 	} else {
 		log.Println("Program running in foreground mode...")
 		a.start()
 	}
 }
 
-func (a *Application) start() {
+func (a *ApplicationModel) start() {
 	log.Println("Application started!")
+	//exchanges.TestVar = "546"
+	//log.Println(exchanges.TickerModel.GetAssets())
+}
+
+func init() {
+	Application = new(ApplicationModel)
 }

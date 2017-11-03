@@ -4,29 +4,31 @@ import (
 	"flag"
 )
 
-var (
-	signal = flag.String("d", "", `Run application in daemon mode.
-		start — reloading the configuration file
-		stop — fast shutdown
-	`)
-)
+var DaemonArgument DaemonArgumentModel
 
-type DaemonArgument struct {
-	Flag *string
+var signal = flag.String("d", "", `Run application in daemon mode.
+		start — reloading the configuration file
+		stop — fast shutdown`)
+
+type DaemonArgumentModel struct {
+	Flag  *string
 	Value string
 }
 
-func (dc *DaemonArgument) IsUsed() bool {
+func (dc *DaemonArgumentModel) IsUsed() bool {
 	return dc.Value == "daemon" || dc.Value == "start" || dc.Value == "stop"
 }
 
-func (dc *DaemonArgument) CheckValue(sig string) bool {
+func (dc *DaemonArgumentModel) CheckValue(sig string) bool {
 	return sig == dc.Value
 }
 
-func NewDaemonArgument() *DaemonArgument {
-	dc := new(DaemonArgument)
-	dc.Flag = signal
-	dc.Value = *signal
-	return dc
+func init() {
+	if DaemonArgument == (DaemonArgumentModel{}) {
+		flag.Parse()
+		da := new(DaemonArgumentModel)
+		da.Flag = signal
+		da.Value = *signal
+		DaemonArgument = *da
+	}
 }

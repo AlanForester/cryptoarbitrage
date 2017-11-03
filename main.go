@@ -1,9 +1,9 @@
 package main
 
 import (
-	"CryptoArbitrage/services"
+	. "CryptoArbitrage/services"
 )
 
 func main() {
-	new(services.Application).Loader()
+	Application.Loader()
 }

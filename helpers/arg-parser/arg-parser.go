@@ -1,19 +1,23 @@
 package arg_parser
 
 import (
-	"flag"
 	. "CryptoArbitrage/helpers/arg-parser/cli-args"
+
 )
 
-type ArgumentParser struct {
-	Daemon DaemonArgument
+var ArgumentParser ArgumentParserModel
+
+type ArgumentParserModel struct {
+
+	Daemon DaemonArgumentModel
 }
 
-func NewArgumentParser() *ArgumentParser {
-	flag.Parse()
-	ap := new(ArgumentParser)
-	ap.Daemon = *NewDaemonArgument()
-	return ap
+func init() {
+	if ArgumentParser == (ArgumentParserModel{}) {
+		ap := new(ArgumentParserModel)
+		ap.Daemon = DaemonArgument
+		ArgumentParser = *ap
+	}
 }
 
 
