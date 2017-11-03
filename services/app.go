@@ -4,6 +4,7 @@ import (
 	"log"
 	. "CryptoArbitrage/helpers/arg-parser"
 	. "CryptoArbitrage/helpers"
+	"CryptoArbitrage/providers/exchanges"
 )
 
 var Application *ApplicationModel
@@ -23,8 +24,8 @@ func (a *ApplicationModel) Loader() {
 
 func (a *ApplicationModel) start() {
 	log.Println("Application started!")
-	//exchanges.TestVar = "546"
-	//log.Println(exchanges.TickerModel.GetAssets())
+	t := exchanges.Ticker
+	t.GetAssets()
 }
 
 func init() {
