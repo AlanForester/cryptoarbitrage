@@ -7,7 +7,6 @@ import (
 var ArgumentParser ArgumentParserModel
 
 type ArgumentParserModel struct {
-
 	Daemon DaemonArgumentModel
 }
 

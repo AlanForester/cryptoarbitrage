@@ -27,7 +27,7 @@ func (dc *DaemonModel) getContext() *goDaemon.Context {
 	}
 }
 
-func (dc *DaemonModel) Start(f func()) {
+func (dc *DaemonModel) Run(f func()) {
 
 	goDaemon.AddCommand(goDaemon.StringFlag(dc.arg.Flag, "stop"), syscall.SIGQUIT, dc.termHandler)
 

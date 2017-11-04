@@ -4,30 +4,28 @@ import (
 	"log"
 	. "CryptoArbitrage/helpers/arg-parser"
 	. "CryptoArbitrage/helpers"
-	"CryptoArbitrage/providers/exchanges"
+	. "CryptoArbitrage/providers/extractor"
 )
 
-var Application *ApplicationModel
+var Application applicationModel
 
-type ApplicationModel struct {}
+type applicationModel struct {}
 
-func (a *ApplicationModel) Loader() {
-	log.Println(ArgumentParser.Daemon.IsUsed())
+func (a *applicationModel) Loader() {
 	if ArgumentParser.Daemon.IsUsed() {
 		log.Println("Program running in daemon mode...")
-		Daemon.Start(a.start)
+		Daemon.Run(a.start)
 	} else {
 		log.Println("Program running in foreground mode...")
-		a.start()
+		defer a.start()
 	}
 }
 
-func (a *ApplicationModel) start() {
+func (a *applicationModel) start() {
 	log.Println("Application started!")
-	t := exchanges.Ticker
-	t.GetAssets()
+	Extractor.GetAssets()
 }
 
 func init() {
-	Application = new(ApplicationModel)
+	Application = *new(applicationModel)
 }
