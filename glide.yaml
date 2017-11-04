@@ -2,3 +2,9 @@ package: CryptoArbitrage
 import:
 - package: github.com/sevlyar/go-daemon
   version: v0.1.1
+- package: gopkg.in/src-d/go-kallax.v1
+  version: v1.3.1
+- package: github.com/garyburd/redigo
+  version: v1.2.0
+  subpackages:
+  - redis

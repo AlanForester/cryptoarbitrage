@@ -30,3 +30,5 @@ The Glide repo has now been configured to use glide to manage itself, too.`
 
 
 https://github.com/sevlyar/go-daemon
+
+https://github.com/src-d/go-kallax
