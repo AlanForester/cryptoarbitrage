@@ -34,7 +34,7 @@ _testmain.go
 *~
 .DS_Store
 .idea
-/src/
+/src/*
 /pkg/
 /deploy/build/*
 /deploy/releases/*

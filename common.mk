@@ -8,8 +8,16 @@ start:
 stop:
 	go run main.go -d stop
 
+env:
+	bash -c ' \
+		pwd := $$(pwd) \
+		export GOPATH="$(pwd):$(pwd)/../.." \
+		export PATH="$PATH:$(pwd)/bin" \
+	done'
+
 release:
-	mkdir -p deploy/releases/$(NAME)-"$(VERSION)"/src/$(NAME)
+	mkdir -p deploy/releases/$(NAME)-"$(VERSION)"
+	/src/$(NAME)
 
 	rsync -avzr --delete \
 		--filter='- $(NAME)-*' \
