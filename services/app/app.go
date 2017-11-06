@@ -2,8 +2,8 @@ package app
 
 import (
 	"log"
-	. "CryptoArbitrage/helpers/arg-parser"
-	. "CryptoArbitrage/helpers"
+	. "CryptoArbitrage/services/arg-parser"
+	. "CryptoArbitrage/services"
 	. "CryptoArbitrage/providers/extractor"
 )
 
