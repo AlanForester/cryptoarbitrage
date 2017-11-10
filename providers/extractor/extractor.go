@@ -15,7 +15,6 @@ const (
 
 type extractorModel struct {}
 
-
 func (t *extractorModel) GetAssets() []Asset {
 	response := HTTPClient.Get(getAssetsURL)
 	if response.StatusCode != 200 {
@@ -29,8 +28,6 @@ func (t *extractorModel) GetAssets() []Asset {
 		log.Fatalln(err)
 		return nil
 	}
-	log.Printf("Results: %v\n", data)
-
 	return data.Assets
 }
 

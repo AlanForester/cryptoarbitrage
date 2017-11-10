@@ -1,6 +1,4 @@
 .PHONY: run
 run:
-	bash -c ' \
-		make env \
-		go run main.go \
-	done'
+		make env
+		go run main.go

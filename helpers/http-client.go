@@ -68,7 +68,6 @@ func (c *HTTPClientModel) query(p HTTPClientParamsModel) *HTTPClientResponse {
 // TODO: Провести тесты с обоими вариантами
 // Инициализация при каждом вызове
 func newHTTPClient() *HTTPClientModel {
-	print("324234\n")
 	c := new(HTTPClientModel)
 	c.client = http.Client{Timeout: 10 * time.Second}
 	return c

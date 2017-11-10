@@ -23,7 +23,7 @@ func (a *applicationModel) Loader() {
 
 func (a *applicationModel) start() {
 	log.Println("Application started!")
-	Extractor.GetAssets()
+	log.Println(Extractor.GetAssets())
 }
 
 func init() {

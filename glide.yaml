@@ -1,8 +1,27 @@
 package: CryptoArbitrage
 import:
-- package: git@github.com/sevlyar/go-daemon
+- package: github.com/sevlyar/go-daemon
   version: v0.1.1
-- package: git@gopkg.in/src-d/go-kallax.v1
+  subpackages:
+  - git@github.com/sevlyar/go-daemon
+- package: gopkg.in/src-d/go-kallax.v1
   version: v1.3.1
-- package: git@github.com/garyburd/redigo
+  subpackages:
+  - git@gopkg.in/src-d/go-kallax.v1
+- package: github.com/garyburd/redigo
   version: v1.2.0
+  subpackages:
+  - git@github.com/garyburd/redigo
+- package: gopkg.in/urfave/cli.v1
+  version: v1.20.0
+- package: gopkg.in/src-d/go-parse-utils.v1
+  version: v1.1.2
+- package: golang.org/x/tools
+  subpackages:
+  - imports
+- package: github.com/mattes/migrate
+  version: v3.0.1
+  subpackages:
+  - source/file
+- package: github.com/fatih/color
+  version: v1.5.0

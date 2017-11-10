@@ -12,8 +12,12 @@ env:
 	bash -c ' \
 		pwd := $$(pwd) \
 		export GOPATH="$(pwd):$(pwd)/../.." \
-		export PATH="$PATH:$(pwd)/bin" \
+		export PATH="$(PATH):$(pwd)/bin" \
 	done'
+
+gen:
+	go $$(pwd)/vendor/gopkg.in/src-d/go-kallax.v1/generator/cli/kallax/cmd.go gen
+	# go generate ./...
 
 release:
 	mkdir -p deploy/releases/$(NAME)-"$(VERSION)"
