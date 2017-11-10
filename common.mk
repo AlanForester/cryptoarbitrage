@@ -16,8 +16,7 @@ env:
 	done'
 
 gen:
-	go $$(pwd)/vendor/gopkg.in/src-d/go-kallax.v1/generator/cli/kallax/cmd.go gen
-	# go generate ./...
+	go generate ./...
 
 release:
 	mkdir -p deploy/releases/$(NAME)-"$(VERSION)"
