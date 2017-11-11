@@ -8,7 +8,7 @@ import (
 )
 
 type Price struct {
-	kallax.Model           `table:"prices" pk:"id,autoincr"`
+	kallax.Model           `table:"prices"`
 	kallax.Timestamps
 	ID         kallax.ULID `pk:"autoincr"`
 	PairId     Pair        `fk:"pair_id,inverse"`

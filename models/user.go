@@ -9,7 +9,7 @@ import (
 )
 
 type User struct {
-	kallax.Model            `table:"prices" pk:"id,autoincr"`
+	kallax.Model            `table:"users" pk:"id,autoincr"`
 	ID          kallax.ULID `pk:"autoincr"`
 	Email       string      `kallax:"email"`
 	Password    string      `kallax:"password"`
@@ -18,3 +18,4 @@ type User struct {
 	Role        string      `kallax:"role"`
 	kallax.Timestamps
 }
+

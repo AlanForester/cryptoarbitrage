@@ -5,7 +5,6 @@ import (
 	. "CryptoArbitrage/helpers"
 	. "CryptoArbitrage/providers/extractor/internal"
 	"encoding/json"
-	"fmt"
 	. "strings"
 )
 
@@ -15,6 +14,7 @@ const (
 	getAssetsURL = "https://api.cryptowat.ch/assets"
 	getPairsURL  = "https://api.cryptowat.ch/pairs"
 	getPricesURL = "https://api.cryptowat.ch/markets/prices"
+	getMarketsURL = "https://api.cryptowat.ch/markets"
 )
 
 type extractorModel struct{}
@@ -49,6 +49,22 @@ func (t *extractorModel) GetPairs() []Pair {
 		return nil
 	}
 	return data.Pairs
+}
+
+func (t *extractorModel) GetMarkets() []Market {
+	response := HTTPClient.Get(getMarketsURL)
+	if response.StatusCode != 200 {
+		log.Fatalln(response.Error)
+		return nil
+	}
+
+	var data MarketSet
+	err := json.Unmarshal(response.Body, &data)
+	if err != nil {
+		log.Fatalln(err)
+		return nil
+	}
+	return data.Markets
 }
 
 func (t *extractorModel) GetPrices() Prices {

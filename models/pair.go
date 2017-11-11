@@ -8,7 +8,7 @@ import (
 )
 
 type Pair struct {
-	kallax.Model        `table:"pairs" pk:"id,autoincr"`
+	kallax.Model        `table:"pairs"`
 	ID      kallax.ULID `pk:"autoincr"`
 	Symbol  string      `kallax:"symbol"`
 	BaseId  *Asset      `fk:"base_id,inverse"`
