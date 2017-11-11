@@ -8,7 +8,7 @@ import (
 )
 
 type Exchange struct {
-	kallax.Model `table:"exchanges" pk:"id,autoincr"`
-	ID   kallax.ULID
-	Code string
+	kallax.Model `table:"exchanges"`
+	ID   kallax.ULID `pk:"autoincr"`
+	Code string `kallax:"code"`
 }
