@@ -5,16 +5,19 @@ import (
 	. "CryptoArbitrage/helpers"
 	. "CryptoArbitrage/providers/extractor/internal"
 	"encoding/json"
+	"fmt"
+	. "strings"
 )
 
 var Extractor extractorModel
 
 const (
 	getAssetsURL = "https://api.cryptowat.ch/assets"
-	getPairsURL = "https://api.cryptowat.ch/pairs"
+	getPairsURL  = "https://api.cryptowat.ch/pairs"
+	getPricesURL = "https://api.cryptowat.ch/markets/prices"
 )
 
-type extractorModel struct {}
+type extractorModel struct{}
 
 func (t *extractorModel) GetAssets() []Asset {
 	response := HTTPClient.Get(getAssetsURL)
@@ -32,7 +35,7 @@ func (t *extractorModel) GetAssets() []Asset {
 	return data.Assets
 }
 
-func (t *extractorModel) GetPairs() []Asset {
+func (t *extractorModel) GetPairs() []Pair {
 	response := HTTPClient.Get(getPairsURL)
 	if response.StatusCode != 200 {
 		log.Fatalln(response.Error)
@@ -48,6 +51,29 @@ func (t *extractorModel) GetPairs() []Asset {
 	return data.Pairs
 }
 
+func (t *extractorModel) GetPrices() Prices {
+	response := HTTPClient.Get(getPricesURL)
+	if response.StatusCode != 200 {
+		log.Fatalln(response.Error)
+		return nil
+	}
+
+	var data PricesSet
+	err := json.Unmarshal(response.Body, &data)
+	if err != nil {
+		log.Fatalln(err)
+		return nil
+	}
+
+	var prices Prices
+	for key, price := range data.Prices {
+		s := Split(key,":")
+		exchange, symbol := s[0], s[1]
+		priceModel := Price{Exchange: exchange, Symbol: symbol, Price: float32(price)}
+		prices = append(prices,priceModel)
+	}
+	return prices
+}
 
 func init() {
 	Extractor = * &extractorModel{}

@@ -9,11 +9,10 @@ stop:
 	go run main.go -d stop
 
 env:
-	bash -c ' \
-		pwd := $$(pwd) \
-		export GOPATH="$(pwd):$(pwd)/../.." \
-		export PATH="$(PATH):$(pwd)/bin" \
-	done'
+		pwd := $$(pwd)
+		export GOBIN=$(pwd)/bin
+		export GOPATH=$(pwd):$$(pwd)/../..
+		export PATH=$(PATH):$$(pwd)/bin
 
 gen:
 	go generate ./...

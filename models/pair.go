@@ -1,5 +1,6 @@
 //go:generate kallax gen
-//proteus:generate
+//go:generate proteus:generate
+
 package models
 
 import (
@@ -7,9 +8,9 @@ import (
 )
 
 type Pair struct {
-	kallax.Model `table:"pairs" pk:"id"`
+	kallax.Model `table:"pairs" pk:"id,autoincr"`
 	ID     kallax.ULID
 	Symbol string
-	BaseId   string
-	QuoteId  string
+	BaseId   *Asset `fk:"base_id,inverse"`
+	QuoteId  *Asset `fk:"quote_id,inverse"`
 }
