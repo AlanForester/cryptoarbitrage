@@ -16,6 +16,12 @@ type User struct {
 	LastLogin   time.Time   `kallax:"last_login"`
 	SubscribeTo time.Time   `kallax:"subscribe_to"`
 	Role        string      `kallax:"role"`
+	Balances	[]UserBalance `kallax:"balances"`
 	kallax.Timestamps
 }
 
+type UserBalance struct {
+	Exchange string
+	Asset string
+	Volume float32
+}
