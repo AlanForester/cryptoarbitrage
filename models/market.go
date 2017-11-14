@@ -13,4 +13,6 @@ type Market struct {
 	PairId     *Pair       `fk:"pair_id,inverse"`
 	ExchangeId *Exchange   `fk:"exchange_id,inverse"`
 	IsActive   bool        `kallax:"is_active"`
+
+	Orders 	[]*Order		`fk:"market_id"`
 }

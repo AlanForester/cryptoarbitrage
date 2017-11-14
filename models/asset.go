@@ -12,4 +12,8 @@ type Asset struct {
 	Symbol string      `kallax:"symbol"`
 	Name   string      `kallax:"name"`
 	IsFiat bool        `kallax:"is_fiat"`
+
+	Markets    []*Market `fk:"exchange_id"`
+	BasePairs  []*Pair   `fk:"base_id"`
+	QuotePairs []*Pair   `fk:"quote_id"`
 }

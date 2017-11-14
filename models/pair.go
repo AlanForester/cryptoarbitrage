@@ -11,6 +11,8 @@ type Pair struct {
 	kallax.Model           `table:"pairs"`
 	ID         kallax.ULID `pk:"autoincr"`
 	Symbol     string      `kallax:"symbol"`
-	BaseId     *Asset      `fk:"asset_id,inverse"`
-	QuoteId    *Asset      `fk:"asset_id,inverse"`
+	BaseId     *Asset      `fk:"base_id,inverse"`
+	QuoteId    *Asset      `fk:"quote_id,inverse"`
+
+	Markets        []*Market    `fk:"pair_id"`
 }

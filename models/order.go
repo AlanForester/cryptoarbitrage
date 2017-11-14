@@ -26,4 +26,6 @@ type Order struct {
 	BuyFee        float32     `kallax:"buy_fee"`
 	SellFee       float32     `kallax:"sell_fee"`
 	Delta         float32     `kallax:"delta"`
+
+	Trades        []*Trade    `fk:"order_id"`
 }
