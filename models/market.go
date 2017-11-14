@@ -7,10 +7,10 @@ import (
 	"gopkg.in/src-d/go-kallax.v1"
 )
 
-type Pair struct {
+type Market struct {
 	kallax.Model           `table:"pairs"`
 	ID         kallax.ULID `pk:"autoincr"`
-	Symbol     string      `kallax:"symbol"`
-	BaseId     *Asset      `fk:"asset_id,inverse"`
-	QuoteId    *Asset      `fk:"asset_id,inverse"`
+	PairId     *Pair       `fk:"pair_id,inverse"`
+	ExchangeId *Exchange   `fk:"exchange_id,inverse"`
+	IsActive   bool        `kallax:"is_active"`
 }

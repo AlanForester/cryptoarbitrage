@@ -9,19 +9,19 @@ import (
 )
 
 type User struct {
-	kallax.Model            `table:"users" pk:"id,autoincr"`
-	ID          kallax.ULID `pk:"autoincr"`
-	Email       string      `kallax:"email"`
-	Password    string      `kallax:"password"`
-	LastLogin   time.Time   `kallax:"last_login"`
-	SubscribeTo time.Time   `kallax:"subscribe_to"`
-	Role        string      `kallax:"role"`
-	Balances	[]UserBalance `kallax:"balances"`
+	kallax.Model              `table:"users" pk:"id,autoincr"`
+	ID          kallax.ULID   `pk:"autoincr"`
+	Email       string        `kallax:"email"`
+	Password    string        `kallax:"password"`
+	LastLogin   time.Time     `kallax:"last_login"`
+	SubscribeTo time.Time     `kallax:"subscribe_to"`
+	Role        string        `kallax:"role"`
+	Balances    []UserBalance `kallax:"balances"`
 	kallax.Timestamps
 }
 
 type UserBalance struct {
 	Exchange string
-	Asset string
-	Volume float32
+	Asset    string
+	Volume   float32
 }

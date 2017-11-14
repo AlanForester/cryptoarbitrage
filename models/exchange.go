@@ -8,7 +8,8 @@ import (
 )
 
 type Exchange struct {
-	kallax.Model `table:"exchanges"`
+	kallax.Model     `table:"exchanges"`
 	ID   kallax.ULID `pk:"autoincr"`
-	Code string `kallax:"code"`
+	Code string      `kallax:"code"`
+	IsActive bool `kallax:"is_active"`
 }
