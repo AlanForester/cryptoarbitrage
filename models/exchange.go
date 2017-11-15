@@ -10,7 +10,8 @@ import (
 type Exchange struct {
 	kallax.Model         `table:"exchanges"`
 	ID       kallax.ULID `pk:"autoincr"`
-	Code     string      `kallax:"code"`
+	Symbol   string      `kallax:"symbol"`
+	Name     string      `kallax:"name"`
 	IsActive bool        `kallax:"is_active"`
 
 	Markets []*Market        `fk:"exchange_id"`

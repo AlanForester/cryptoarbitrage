@@ -18,7 +18,7 @@ type User struct {
 	Role        string        `kallax:"role"`
 	kallax.Timestamps
 
-	Balances    *[]UserBalance `kallax:"balances"`
-
+	Balances    *[]UserBalance `fk:"user_id"`
 	Orders *[]Order `fk:"user_id"`
+	Trades *[]Trade `fk:"user_id"`
 }

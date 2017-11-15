@@ -8,11 +8,11 @@ import (
 )
 
 type Market struct {
-	kallax.Model           `table:"pairs"`
-	ID         kallax.ULID `pk:"autoincr"`
-	PairId     *Pair       `fk:"pair_id,inverse"`
-	ExchangeId *Exchange   `fk:"exchange_id,inverse"`
-	IsActive   bool        `kallax:"is_active"`
+	kallax.Model         `table:"pairs"`
+	ID       kallax.ULID `pk:"autoincr"`
+	Pair     *Pair       `fk:"pair_id,inverse"`
+	Exchange *Exchange   `fk:"exchange_id,inverse"`
+	IsActive bool        `kallax:"is_active"`
 
-	Orders 	[]*Order		`fk:"market_id"`
+	Orders []*Order `fk:"market_id"`
 }

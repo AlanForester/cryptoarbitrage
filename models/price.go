@@ -8,13 +8,13 @@ import (
 )
 
 type Price struct {
-	kallax.Model           `table:"prices"`
+	kallax.Model         `table:"prices"`
 	kallax.Timestamps
-	ID         kallax.ULID `pk:"autoincr"`
-	PairId     *Pair       `fk:"pair_id,inverse"`
-	ExchangeId *Exchange   `fk:"exchange_id,inverse"`
-	MarketId   *Market     `fk:"market_id,inverse"`
-	Price      float32     `kallax:"price"`
+	ID       kallax.ULID `pk:"autoincr"`
+	Pair     *Pair       `fk:"pair_id,inverse"`
+	Exchange *Exchange   `fk:"exchange_id,inverse"`
+	Market   *Market     `fk:"market_id,inverse"`
+	Price    float32     `kallax:"price"`
 
 	PairSymbol     string `kallax:",inline"`
 	ExchangeSymbol string `kallax:",inline"`
