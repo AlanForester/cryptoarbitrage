@@ -6,7 +6,7 @@ import (
 
 type ExchangeAsset struct {
 	kallax.Model               `table:"exchange_assets"`
-	ID             kallax.ULID `pk:"autoincr"`
+	ID kallax.NumericID `pk:"autoincr"`
 	Asset          *Asset      `fk:"asset_id,inverse"`
 	Exchange       *Exchange   `fk:"exchange_id,inverse"`
 	TransactionFee float32     `kallax:"transaction_fee"`

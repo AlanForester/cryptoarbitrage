@@ -1,4 +1,3 @@
-
 package models
 
 import (
@@ -7,7 +6,7 @@ import (
 
 type Difference struct {
 	kallax.Model                   `table:"differences"`
-	ID            kallax.ULID      `pk:"autoincr"`
+	ID            kallax.NumericID `pk:"autoincr"`
 	kallax.Timestamps
 	Pair          *Pair            `fk:"pair_id,inverse"`
 	BaseExchange  *Exchange        `fk:"base_id,inverse"`

@@ -5,11 +5,11 @@ import (
 )
 
 type Exchange struct {
-	kallax.Model         `table:"exchanges"`
-	ID       kallax.ULID `pk:"autoincr"`
-	Symbol   string      `kallax:"symbol"`
-	Name     string      `kallax:"name"`
-	IsActive bool        `kallax:"is_active"`
+	kallax.Model              `table:"exchanges"`
+	ID       kallax.NumericID `pk:"autoincr"`
+	Symbol   string           `kallax:"symbol"`
+	Name     string           `kallax:"name"`
+	IsActive bool             `kallax:"is_active"`
 
 	Markets          []*Market        `fk:"exchange_id"`
 	Assets           []*ExchangeAsset `fk:"exchange_id"`

@@ -15,7 +15,7 @@ env:
 	export PATH=$(PATH):$$(pwd)/bin
 
 gen:
-	go generate ./...
+	kallax gen --output ./models.go --input ./models
 
 migrations:
 	kallax migrate --input ./models --out ./data/migrations --name initial_schema

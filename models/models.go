@@ -25,14 +25,14 @@ func NewAsset() (record *Asset) {
 
 // GetID returns the primary key of the model.
 func (r *Asset) GetID() kallax.Identifier {
-	return (*kallax.ULID)(&r.ID)
+	return (*kallax.NumericID)(&r.ID)
 }
 
 // ColumnAddress returns the pointer to the value of the given column.
 func (r *Asset) ColumnAddress(col string) (interface{}, error) {
 	switch col {
 	case "id":
-		return (*kallax.ULID)(&r.ID), nil
+		return (*kallax.NumericID)(&r.ID), nil
 	case "symbol":
 		return &r.Symbol, nil
 	case "name":
@@ -743,7 +743,7 @@ func (q *AssetQuery) WithBalances(cond kallax.Condition) *AssetQuery {
 // FindByID adds a new filter to the query that will require that
 // the ID property is equal to one of the passed values; if no passed values,
 // it will do nothing.
-func (q *AssetQuery) FindByID(v ...kallax.ULID) *AssetQuery {
+func (q *AssetQuery) FindByID(v ...kallax.NumericID) *AssetQuery {
 	if len(v) == 0 {
 		return q
 	}
@@ -887,24 +887,24 @@ func NewDifference() (record *Difference) {
 
 // GetID returns the primary key of the model.
 func (r *Difference) GetID() kallax.Identifier {
-	return (*kallax.ULID)(&r.ID)
+	return (*kallax.NumericID)(&r.ID)
 }
 
 // ColumnAddress returns the pointer to the value of the given column.
 func (r *Difference) ColumnAddress(col string) (interface{}, error) {
 	switch col {
 	case "id":
-		return (*kallax.ULID)(&r.ID), nil
+		return (*kallax.NumericID)(&r.ID), nil
 	case "created_at":
 		return &r.Timestamps.CreatedAt, nil
 	case "updated_at":
 		return &r.Timestamps.UpdatedAt, nil
 	case "pair_id":
-		return types.Nullable(kallax.VirtualColumn("pair_id", r, new(kallax.ULID))), nil
+		return types.Nullable(kallax.VirtualColumn("pair_id", r, new(kallax.NumericID))), nil
 	case "base_id":
-		return types.Nullable(kallax.VirtualColumn("base_id", r, new(kallax.ULID))), nil
+		return types.Nullable(kallax.VirtualColumn("base_id", r, new(kallax.NumericID))), nil
 	case "quote_id":
-		return types.Nullable(kallax.VirtualColumn("quote_id", r, new(kallax.ULID))), nil
+		return types.Nullable(kallax.VirtualColumn("quote_id", r, new(kallax.NumericID))), nil
 	case "delta":
 		return &r.Delta, nil
 
@@ -1343,7 +1343,7 @@ func (q *DifferenceQuery) WithQuoteExchange() *DifferenceQuery {
 // FindByID adds a new filter to the query that will require that
 // the ID property is equal to one of the passed values; if no passed values,
 // it will do nothing.
-func (q *DifferenceQuery) FindByID(v ...kallax.ULID) *DifferenceQuery {
+func (q *DifferenceQuery) FindByID(v ...kallax.NumericID) *DifferenceQuery {
 	if len(v) == 0 {
 		return q
 	}
@@ -1368,19 +1368,19 @@ func (q *DifferenceQuery) FindByUpdatedAt(cond kallax.ScalarCond, v time.Time) *
 
 // FindByPair adds a new filter to the query that will require that
 // the foreign key of Pair is equal to the passed value.
-func (q *DifferenceQuery) FindByPair(v kallax.ULID) *DifferenceQuery {
+func (q *DifferenceQuery) FindByPair(v kallax.NumericID) *DifferenceQuery {
 	return q.Where(kallax.Eq(Schema.Difference.PairFK, v))
 }
 
 // FindByBaseExchange adds a new filter to the query that will require that
 // the foreign key of BaseExchange is equal to the passed value.
-func (q *DifferenceQuery) FindByBaseExchange(v kallax.ULID) *DifferenceQuery {
+func (q *DifferenceQuery) FindByBaseExchange(v kallax.NumericID) *DifferenceQuery {
 	return q.Where(kallax.Eq(Schema.Difference.BaseExchangeFK, v))
 }
 
 // FindByQuoteExchange adds a new filter to the query that will require that
 // the foreign key of QuoteExchange is equal to the passed value.
-func (q *DifferenceQuery) FindByQuoteExchange(v kallax.ULID) *DifferenceQuery {
+func (q *DifferenceQuery) FindByQuoteExchange(v kallax.NumericID) *DifferenceQuery {
 	return q.Where(kallax.Eq(Schema.Difference.QuoteExchangeFK, v))
 }
 
@@ -1505,14 +1505,14 @@ func NewExchange() (record *Exchange) {
 
 // GetID returns the primary key of the model.
 func (r *Exchange) GetID() kallax.Identifier {
-	return (*kallax.ULID)(&r.ID)
+	return (*kallax.NumericID)(&r.ID)
 }
 
 // ColumnAddress returns the pointer to the value of the given column.
 func (r *Exchange) ColumnAddress(col string) (interface{}, error) {
 	switch col {
 	case "id":
-		return (*kallax.ULID)(&r.ID), nil
+		return (*kallax.NumericID)(&r.ID), nil
 	case "symbol":
 		return &r.Symbol, nil
 	case "name":
@@ -2848,7 +2848,7 @@ func (q *ExchangeQuery) WithBalances(cond kallax.Condition) *ExchangeQuery {
 // FindByID adds a new filter to the query that will require that
 // the ID property is equal to one of the passed values; if no passed values,
 // it will do nothing.
-func (q *ExchangeQuery) FindByID(v ...kallax.ULID) *ExchangeQuery {
+func (q *ExchangeQuery) FindByID(v ...kallax.NumericID) *ExchangeQuery {
 	if len(v) == 0 {
 		return q
 	}
@@ -2992,18 +2992,18 @@ func NewExchangeAsset() (record *ExchangeAsset) {
 
 // GetID returns the primary key of the model.
 func (r *ExchangeAsset) GetID() kallax.Identifier {
-	return (*kallax.ULID)(&r.ID)
+	return (*kallax.NumericID)(&r.ID)
 }
 
 // ColumnAddress returns the pointer to the value of the given column.
 func (r *ExchangeAsset) ColumnAddress(col string) (interface{}, error) {
 	switch col {
 	case "id":
-		return (*kallax.ULID)(&r.ID), nil
+		return (*kallax.NumericID)(&r.ID), nil
 	case "asset_id":
-		return types.Nullable(kallax.VirtualColumn("asset_id", r, new(kallax.ULID))), nil
+		return types.Nullable(kallax.VirtualColumn("asset_id", r, new(kallax.NumericID))), nil
 	case "exchange_id":
-		return types.Nullable(kallax.VirtualColumn("exchange_id", r, new(kallax.ULID))), nil
+		return types.Nullable(kallax.VirtualColumn("exchange_id", r, new(kallax.NumericID))), nil
 	case "transaction_fee":
 		return &r.TransactionFee, nil
 
@@ -3393,7 +3393,7 @@ func (q *ExchangeAssetQuery) WithExchange() *ExchangeAssetQuery {
 // FindByID adds a new filter to the query that will require that
 // the ID property is equal to one of the passed values; if no passed values,
 // it will do nothing.
-func (q *ExchangeAssetQuery) FindByID(v ...kallax.ULID) *ExchangeAssetQuery {
+func (q *ExchangeAssetQuery) FindByID(v ...kallax.NumericID) *ExchangeAssetQuery {
 	if len(v) == 0 {
 		return q
 	}
@@ -3406,13 +3406,13 @@ func (q *ExchangeAssetQuery) FindByID(v ...kallax.ULID) *ExchangeAssetQuery {
 
 // FindByAsset adds a new filter to the query that will require that
 // the foreign key of Asset is equal to the passed value.
-func (q *ExchangeAssetQuery) FindByAsset(v kallax.ULID) *ExchangeAssetQuery {
+func (q *ExchangeAssetQuery) FindByAsset(v kallax.NumericID) *ExchangeAssetQuery {
 	return q.Where(kallax.Eq(Schema.ExchangeAsset.AssetFK, v))
 }
 
 // FindByExchange adds a new filter to the query that will require that
 // the foreign key of Exchange is equal to the passed value.
-func (q *ExchangeAssetQuery) FindByExchange(v kallax.ULID) *ExchangeAssetQuery {
+func (q *ExchangeAssetQuery) FindByExchange(v kallax.NumericID) *ExchangeAssetQuery {
 	return q.Where(kallax.Eq(Schema.ExchangeAsset.ExchangeFK, v))
 }
 
@@ -3537,18 +3537,18 @@ func NewMarket() (record *Market) {
 
 // GetID returns the primary key of the model.
 func (r *Market) GetID() kallax.Identifier {
-	return (*kallax.ULID)(&r.ID)
+	return (*kallax.NumericID)(&r.ID)
 }
 
 // ColumnAddress returns the pointer to the value of the given column.
 func (r *Market) ColumnAddress(col string) (interface{}, error) {
 	switch col {
 	case "id":
-		return (*kallax.ULID)(&r.ID), nil
+		return (*kallax.NumericID)(&r.ID), nil
 	case "pair_id":
-		return types.Nullable(kallax.VirtualColumn("pair_id", r, new(kallax.ULID))), nil
+		return types.Nullable(kallax.VirtualColumn("pair_id", r, new(kallax.NumericID))), nil
 	case "exchange_id":
-		return types.Nullable(kallax.VirtualColumn("exchange_id", r, new(kallax.ULID))), nil
+		return types.Nullable(kallax.VirtualColumn("exchange_id", r, new(kallax.NumericID))), nil
 	case "is_active":
 		return &r.IsActive, nil
 
@@ -4335,7 +4335,7 @@ func (q *MarketQuery) WithTrades(cond kallax.Condition) *MarketQuery {
 // FindByID adds a new filter to the query that will require that
 // the ID property is equal to one of the passed values; if no passed values,
 // it will do nothing.
-func (q *MarketQuery) FindByID(v ...kallax.ULID) *MarketQuery {
+func (q *MarketQuery) FindByID(v ...kallax.NumericID) *MarketQuery {
 	if len(v) == 0 {
 		return q
 	}
@@ -4348,13 +4348,13 @@ func (q *MarketQuery) FindByID(v ...kallax.ULID) *MarketQuery {
 
 // FindByPair adds a new filter to the query that will require that
 // the foreign key of Pair is equal to the passed value.
-func (q *MarketQuery) FindByPair(v kallax.ULID) *MarketQuery {
+func (q *MarketQuery) FindByPair(v kallax.NumericID) *MarketQuery {
 	return q.Where(kallax.Eq(Schema.Market.PairFK, v))
 }
 
 // FindByExchange adds a new filter to the query that will require that
 // the foreign key of Exchange is equal to the passed value.
-func (q *MarketQuery) FindByExchange(v kallax.ULID) *MarketQuery {
+func (q *MarketQuery) FindByExchange(v kallax.NumericID) *MarketQuery {
 	return q.Where(kallax.Eq(Schema.Market.ExchangeFK, v))
 }
 
@@ -4479,26 +4479,26 @@ func NewOrder() (record *Order) {
 
 // GetID returns the primary key of the model.
 func (r *Order) GetID() kallax.Identifier {
-	return (*kallax.ULID)(&r.ID)
+	return (*kallax.NumericID)(&r.ID)
 }
 
 // ColumnAddress returns the pointer to the value of the given column.
 func (r *Order) ColumnAddress(col string) (interface{}, error) {
 	switch col {
 	case "id":
-		return (*kallax.ULID)(&r.ID), nil
+		return (*kallax.NumericID)(&r.ID), nil
 	case "created_at":
 		return &r.Timestamps.CreatedAt, nil
 	case "updated_at":
 		return &r.Timestamps.UpdatedAt, nil
 	case "user_id":
-		return types.Nullable(kallax.VirtualColumn("user_id", r, new(kallax.ULID))), nil
+		return types.Nullable(kallax.VirtualColumn("user_id", r, new(kallax.NumericID))), nil
 	case "exchange_id":
-		return types.Nullable(kallax.VirtualColumn("exchange_id", r, new(kallax.ULID))), nil
+		return types.Nullable(kallax.VirtualColumn("exchange_id", r, new(kallax.NumericID))), nil
 	case "pair_id":
-		return types.Nullable(kallax.VirtualColumn("pair_id", r, new(kallax.ULID))), nil
+		return types.Nullable(kallax.VirtualColumn("pair_id", r, new(kallax.NumericID))), nil
 	case "market_id":
-		return types.Nullable(kallax.VirtualColumn("market_id", r, new(kallax.ULID))), nil
+		return types.Nullable(kallax.VirtualColumn("market_id", r, new(kallax.NumericID))), nil
 	case "order_type":
 		return &r.OrderType, nil
 	case "open_price":
@@ -5155,7 +5155,7 @@ func (q *OrderQuery) WithTrades(cond kallax.Condition) *OrderQuery {
 // FindByID adds a new filter to the query that will require that
 // the ID property is equal to one of the passed values; if no passed values,
 // it will do nothing.
-func (q *OrderQuery) FindByID(v ...kallax.ULID) *OrderQuery {
+func (q *OrderQuery) FindByID(v ...kallax.NumericID) *OrderQuery {
 	if len(v) == 0 {
 		return q
 	}
@@ -5180,25 +5180,25 @@ func (q *OrderQuery) FindByUpdatedAt(cond kallax.ScalarCond, v time.Time) *Order
 
 // FindByUser adds a new filter to the query that will require that
 // the foreign key of User is equal to the passed value.
-func (q *OrderQuery) FindByUser(v kallax.ULID) *OrderQuery {
+func (q *OrderQuery) FindByUser(v kallax.NumericID) *OrderQuery {
 	return q.Where(kallax.Eq(Schema.Order.UserFK, v))
 }
 
 // FindByExchange adds a new filter to the query that will require that
 // the foreign key of Exchange is equal to the passed value.
-func (q *OrderQuery) FindByExchange(v kallax.ULID) *OrderQuery {
+func (q *OrderQuery) FindByExchange(v kallax.NumericID) *OrderQuery {
 	return q.Where(kallax.Eq(Schema.Order.ExchangeFK, v))
 }
 
 // FindByPair adds a new filter to the query that will require that
 // the foreign key of Pair is equal to the passed value.
-func (q *OrderQuery) FindByPair(v kallax.ULID) *OrderQuery {
+func (q *OrderQuery) FindByPair(v kallax.NumericID) *OrderQuery {
 	return q.Where(kallax.Eq(Schema.Order.PairFK, v))
 }
 
 // FindByMarket adds a new filter to the query that will require that
 // the foreign key of Market is equal to the passed value.
-func (q *OrderQuery) FindByMarket(v kallax.ULID) *OrderQuery {
+func (q *OrderQuery) FindByMarket(v kallax.NumericID) *OrderQuery {
 	return q.Where(kallax.Eq(Schema.Order.MarketFK, v))
 }
 
@@ -5383,20 +5383,20 @@ func NewPair() (record *Pair) {
 
 // GetID returns the primary key of the model.
 func (r *Pair) GetID() kallax.Identifier {
-	return (*kallax.ULID)(&r.ID)
+	return (*kallax.NumericID)(&r.ID)
 }
 
 // ColumnAddress returns the pointer to the value of the given column.
 func (r *Pair) ColumnAddress(col string) (interface{}, error) {
 	switch col {
 	case "id":
-		return (*kallax.ULID)(&r.ID), nil
+		return (*kallax.NumericID)(&r.ID), nil
 	case "symbol":
 		return &r.Symbol, nil
 	case "base_id":
-		return types.Nullable(kallax.VirtualColumn("base_id", r, new(kallax.ULID))), nil
+		return types.Nullable(kallax.VirtualColumn("base_id", r, new(kallax.NumericID))), nil
 	case "quote_id":
-		return types.Nullable(kallax.VirtualColumn("quote_id", r, new(kallax.ULID))), nil
+		return types.Nullable(kallax.VirtualColumn("quote_id", r, new(kallax.NumericID))), nil
 
 	default:
 		return nil, fmt.Errorf("kallax: invalid column in Pair: %s", col)
@@ -6431,7 +6431,7 @@ func (q *PairQuery) WithTrades(cond kallax.Condition) *PairQuery {
 // FindByID adds a new filter to the query that will require that
 // the ID property is equal to one of the passed values; if no passed values,
 // it will do nothing.
-func (q *PairQuery) FindByID(v ...kallax.ULID) *PairQuery {
+func (q *PairQuery) FindByID(v ...kallax.NumericID) *PairQuery {
 	if len(v) == 0 {
 		return q
 	}
@@ -6450,13 +6450,13 @@ func (q *PairQuery) FindBySymbol(v string) *PairQuery {
 
 // FindByBase adds a new filter to the query that will require that
 // the foreign key of Base is equal to the passed value.
-func (q *PairQuery) FindByBase(v kallax.ULID) *PairQuery {
+func (q *PairQuery) FindByBase(v kallax.NumericID) *PairQuery {
 	return q.Where(kallax.Eq(Schema.Pair.BaseFK, v))
 }
 
 // FindByQuote adds a new filter to the query that will require that
 // the foreign key of Quote is equal to the passed value.
-func (q *PairQuery) FindByQuote(v kallax.ULID) *PairQuery {
+func (q *PairQuery) FindByQuote(v kallax.NumericID) *PairQuery {
 	return q.Where(kallax.Eq(Schema.Pair.QuoteFK, v))
 }
 
@@ -6575,24 +6575,24 @@ func NewPrice() (record *Price) {
 
 // GetID returns the primary key of the model.
 func (r *Price) GetID() kallax.Identifier {
-	return (*kallax.ULID)(&r.ID)
+	return (*kallax.NumericID)(&r.ID)
 }
 
 // ColumnAddress returns the pointer to the value of the given column.
 func (r *Price) ColumnAddress(col string) (interface{}, error) {
 	switch col {
 	case "id":
-		return (*kallax.ULID)(&r.ID), nil
+		return (*kallax.NumericID)(&r.ID), nil
 	case "created_at":
 		return &r.Timestamps.CreatedAt, nil
 	case "updated_at":
 		return &r.Timestamps.UpdatedAt, nil
 	case "pair_id":
-		return types.Nullable(kallax.VirtualColumn("pair_id", r, new(kallax.ULID))), nil
+		return types.Nullable(kallax.VirtualColumn("pair_id", r, new(kallax.NumericID))), nil
 	case "exchange_id":
-		return types.Nullable(kallax.VirtualColumn("exchange_id", r, new(kallax.ULID))), nil
+		return types.Nullable(kallax.VirtualColumn("exchange_id", r, new(kallax.NumericID))), nil
 	case "market_id":
-		return types.Nullable(kallax.VirtualColumn("market_id", r, new(kallax.ULID))), nil
+		return types.Nullable(kallax.VirtualColumn("market_id", r, new(kallax.NumericID))), nil
 	case "price":
 		return &r.Price, nil
 
@@ -7031,7 +7031,7 @@ func (q *PriceQuery) WithMarket() *PriceQuery {
 // FindByID adds a new filter to the query that will require that
 // the ID property is equal to one of the passed values; if no passed values,
 // it will do nothing.
-func (q *PriceQuery) FindByID(v ...kallax.ULID) *PriceQuery {
+func (q *PriceQuery) FindByID(v ...kallax.NumericID) *PriceQuery {
 	if len(v) == 0 {
 		return q
 	}
@@ -7056,19 +7056,19 @@ func (q *PriceQuery) FindByUpdatedAt(cond kallax.ScalarCond, v time.Time) *Price
 
 // FindByPair adds a new filter to the query that will require that
 // the foreign key of Pair is equal to the passed value.
-func (q *PriceQuery) FindByPair(v kallax.ULID) *PriceQuery {
+func (q *PriceQuery) FindByPair(v kallax.NumericID) *PriceQuery {
 	return q.Where(kallax.Eq(Schema.Price.PairFK, v))
 }
 
 // FindByExchange adds a new filter to the query that will require that
 // the foreign key of Exchange is equal to the passed value.
-func (q *PriceQuery) FindByExchange(v kallax.ULID) *PriceQuery {
+func (q *PriceQuery) FindByExchange(v kallax.NumericID) *PriceQuery {
 	return q.Where(kallax.Eq(Schema.Price.ExchangeFK, v))
 }
 
 // FindByMarket adds a new filter to the query that will require that
 // the foreign key of Market is equal to the passed value.
-func (q *PriceQuery) FindByMarket(v kallax.ULID) *PriceQuery {
+func (q *PriceQuery) FindByMarket(v kallax.NumericID) *PriceQuery {
 	return q.Where(kallax.Eq(Schema.Price.MarketFK, v))
 }
 
@@ -7193,28 +7193,28 @@ func NewTrade() (record *Trade) {
 
 // GetID returns the primary key of the model.
 func (r *Trade) GetID() kallax.Identifier {
-	return (*kallax.ULID)(&r.ID)
+	return (*kallax.NumericID)(&r.ID)
 }
 
 // ColumnAddress returns the pointer to the value of the given column.
 func (r *Trade) ColumnAddress(col string) (interface{}, error) {
 	switch col {
 	case "id":
-		return (*kallax.ULID)(&r.ID), nil
+		return (*kallax.NumericID)(&r.ID), nil
 	case "created_at":
 		return &r.Timestamps.CreatedAt, nil
 	case "updated_at":
 		return &r.Timestamps.UpdatedAt, nil
 	case "user_id":
-		return types.Nullable(kallax.VirtualColumn("user_id", r, new(kallax.ULID))), nil
+		return types.Nullable(kallax.VirtualColumn("user_id", r, new(kallax.NumericID))), nil
 	case "exchange_id":
-		return types.Nullable(kallax.VirtualColumn("exchange_id", r, new(kallax.ULID))), nil
+		return types.Nullable(kallax.VirtualColumn("exchange_id", r, new(kallax.NumericID))), nil
 	case "pair_id":
-		return types.Nullable(kallax.VirtualColumn("pair_id", r, new(kallax.ULID))), nil
+		return types.Nullable(kallax.VirtualColumn("pair_id", r, new(kallax.NumericID))), nil
 	case "market_id":
-		return types.Nullable(kallax.VirtualColumn("market_id", r, new(kallax.ULID))), nil
+		return types.Nullable(kallax.VirtualColumn("market_id", r, new(kallax.NumericID))), nil
 	case "order_id":
-		return types.Nullable(kallax.VirtualColumn("order_id", r, new(kallax.ULID))), nil
+		return types.Nullable(kallax.VirtualColumn("order_id", r, new(kallax.NumericID))), nil
 	case "type":
 		return &r.Type, nil
 	case "volume":
@@ -7723,7 +7723,7 @@ func (q *TradeQuery) WithOrder() *TradeQuery {
 // FindByID adds a new filter to the query that will require that
 // the ID property is equal to one of the passed values; if no passed values,
 // it will do nothing.
-func (q *TradeQuery) FindByID(v ...kallax.ULID) *TradeQuery {
+func (q *TradeQuery) FindByID(v ...kallax.NumericID) *TradeQuery {
 	if len(v) == 0 {
 		return q
 	}
@@ -7748,31 +7748,31 @@ func (q *TradeQuery) FindByUpdatedAt(cond kallax.ScalarCond, v time.Time) *Trade
 
 // FindByUser adds a new filter to the query that will require that
 // the foreign key of User is equal to the passed value.
-func (q *TradeQuery) FindByUser(v kallax.ULID) *TradeQuery {
+func (q *TradeQuery) FindByUser(v kallax.NumericID) *TradeQuery {
 	return q.Where(kallax.Eq(Schema.Trade.UserFK, v))
 }
 
 // FindByExchange adds a new filter to the query that will require that
 // the foreign key of Exchange is equal to the passed value.
-func (q *TradeQuery) FindByExchange(v kallax.ULID) *TradeQuery {
+func (q *TradeQuery) FindByExchange(v kallax.NumericID) *TradeQuery {
 	return q.Where(kallax.Eq(Schema.Trade.ExchangeFK, v))
 }
 
 // FindByPair adds a new filter to the query that will require that
 // the foreign key of Pair is equal to the passed value.
-func (q *TradeQuery) FindByPair(v kallax.ULID) *TradeQuery {
+func (q *TradeQuery) FindByPair(v kallax.NumericID) *TradeQuery {
 	return q.Where(kallax.Eq(Schema.Trade.PairFK, v))
 }
 
 // FindByMarket adds a new filter to the query that will require that
 // the foreign key of Market is equal to the passed value.
-func (q *TradeQuery) FindByMarket(v kallax.ULID) *TradeQuery {
+func (q *TradeQuery) FindByMarket(v kallax.NumericID) *TradeQuery {
 	return q.Where(kallax.Eq(Schema.Trade.MarketFK, v))
 }
 
 // FindByOrder adds a new filter to the query that will require that
 // the foreign key of Order is equal to the passed value.
-func (q *TradeQuery) FindByOrder(v kallax.ULID) *TradeQuery {
+func (q *TradeQuery) FindByOrder(v kallax.NumericID) *TradeQuery {
 	return q.Where(kallax.Eq(Schema.Trade.OrderFK, v))
 }
 
@@ -7909,14 +7909,14 @@ func NewUser() (record *User) {
 
 // GetID returns the primary key of the model.
 func (r *User) GetID() kallax.Identifier {
-	return (*kallax.ULID)(&r.ID)
+	return (*kallax.NumericID)(&r.ID)
 }
 
 // ColumnAddress returns the pointer to the value of the given column.
 func (r *User) ColumnAddress(col string) (interface{}, error) {
 	switch col {
 	case "id":
-		return (*kallax.ULID)(&r.ID), nil
+		return (*kallax.NumericID)(&r.ID), nil
 	case "email":
 		return &r.Email, nil
 	case "password":
@@ -8661,7 +8661,7 @@ func (q *UserQuery) WithTrades(cond kallax.Condition) *UserQuery {
 // FindByID adds a new filter to the query that will require that
 // the ID property is equal to one of the passed values; if no passed values,
 // it will do nothing.
-func (q *UserQuery) FindByID(v ...kallax.ULID) *UserQuery {
+func (q *UserQuery) FindByID(v ...kallax.NumericID) *UserQuery {
 	if len(v) == 0 {
 		return q
 	}
@@ -8829,20 +8829,20 @@ func NewUserBalance() (record *UserBalance) {
 
 // GetID returns the primary key of the model.
 func (r *UserBalance) GetID() kallax.Identifier {
-	return (*kallax.ULID)(&r.ID)
+	return (*kallax.NumericID)(&r.ID)
 }
 
 // ColumnAddress returns the pointer to the value of the given column.
 func (r *UserBalance) ColumnAddress(col string) (interface{}, error) {
 	switch col {
 	case "id":
-		return (*kallax.ULID)(&r.ID), nil
+		return (*kallax.NumericID)(&r.ID), nil
 	case "user_id":
-		return types.Nullable(kallax.VirtualColumn("user_id", r, new(kallax.ULID))), nil
+		return types.Nullable(kallax.VirtualColumn("user_id", r, new(kallax.NumericID))), nil
 	case "exchange_id":
-		return types.Nullable(kallax.VirtualColumn("exchange_id", r, new(kallax.ULID))), nil
+		return types.Nullable(kallax.VirtualColumn("exchange_id", r, new(kallax.NumericID))), nil
 	case "asset_id":
-		return types.Nullable(kallax.VirtualColumn("asset_id", r, new(kallax.ULID))), nil
+		return types.Nullable(kallax.VirtualColumn("asset_id", r, new(kallax.NumericID))), nil
 	case "volume":
 		return &r.Volume, nil
 
@@ -9263,7 +9263,7 @@ func (q *UserBalanceQuery) WithAsset() *UserBalanceQuery {
 // FindByID adds a new filter to the query that will require that
 // the ID property is equal to one of the passed values; if no passed values,
 // it will do nothing.
-func (q *UserBalanceQuery) FindByID(v ...kallax.ULID) *UserBalanceQuery {
+func (q *UserBalanceQuery) FindByID(v ...kallax.NumericID) *UserBalanceQuery {
 	if len(v) == 0 {
 		return q
 	}
@@ -9276,19 +9276,19 @@ func (q *UserBalanceQuery) FindByID(v ...kallax.ULID) *UserBalanceQuery {
 
 // FindByUser adds a new filter to the query that will require that
 // the foreign key of User is equal to the passed value.
-func (q *UserBalanceQuery) FindByUser(v kallax.ULID) *UserBalanceQuery {
+func (q *UserBalanceQuery) FindByUser(v kallax.NumericID) *UserBalanceQuery {
 	return q.Where(kallax.Eq(Schema.UserBalance.UserFK, v))
 }
 
 // FindByExchange adds a new filter to the query that will require that
 // the foreign key of Exchange is equal to the passed value.
-func (q *UserBalanceQuery) FindByExchange(v kallax.ULID) *UserBalanceQuery {
+func (q *UserBalanceQuery) FindByExchange(v kallax.NumericID) *UserBalanceQuery {
 	return q.Where(kallax.Eq(Schema.UserBalance.ExchangeFK, v))
 }
 
 // FindByAsset adds a new filter to the query that will require that
 // the foreign key of Asset is equal to the passed value.
-func (q *UserBalanceQuery) FindByAsset(v kallax.ULID) *UserBalanceQuery {
+func (q *UserBalanceQuery) FindByAsset(v kallax.NumericID) *UserBalanceQuery {
 	return q.Where(kallax.Eq(Schema.UserBalance.AssetFK, v))
 }
 

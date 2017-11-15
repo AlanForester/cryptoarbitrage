@@ -5,11 +5,11 @@ import (
 )
 
 type Asset struct {
-	kallax.Model       `table:"assets"`
-	ID     kallax.ULID `pk:"autoincr"`
-	Symbol string      `kallax:"symbol"`
-	Name   string      `kallax:"name"`
-	IsFiat bool        `kallax:"is_fiat"`
+	kallax.Model            `table:"assets"`
+	ID     kallax.NumericID `pk:"autoincr"`
+	Symbol string           `kallax:"symbol"`
+	Name   string           `kallax:"name"`
+	IsFiat bool             `kallax:"is_fiat"`
 
 	BasePairs  []*Pair        `fk:"base_id"`
 	QuotePairs []*Pair        `fk:"quote_id"`
