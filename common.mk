@@ -17,6 +17,9 @@ env:
 gen:
 	go generate ./...
 
+migrate:
+	kallax migrate --input ./models --out ./data/migrations --name initial_schema
+
 release:
 	mkdir -p deploy/releases/$(NAME)-"$(VERSION)"
 	/src/$(NAME)
