@@ -1,6 +1,3 @@
-//go:generate kallax gen
-//go:generate proteus:generate
-
 package models
 
 import (
@@ -8,7 +5,7 @@ import (
 )
 
 type UserBalance struct {
-	kallax.Model         `table:"user_balances" pk:"id,autoincr"`
+	kallax.Model         `table:"user_balances"`
 	ID       kallax.ULID `pk:"autoincr"`
 	User     *User       `fk:"user_id,inverse"`
 	Exchange *Exchange   `fk:"exchange_id,inverse"`

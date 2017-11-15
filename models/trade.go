@@ -1,6 +1,3 @@
-//go:generate kallax gen
-//go:generate proteus:generate
-
 package models
 
 import (
@@ -15,7 +12,7 @@ type Trade struct {
 	Exchange *Exchange   `fk:"exchange_id,inverse"`
 	Pair     *Pair       `fk:"pair_id,inverse"`
 	Market   *Market     `fk:"market_id,inverse"`
-	Order    *Order      `kallax:"order_id"`
+	Order    *Order      `fk:"order_id,inverse"`
 	Type     string      `kallax:"type"`
 	Volume   float32     `kallax:"volume"`
 	Price    float32     `kallax:"price"`

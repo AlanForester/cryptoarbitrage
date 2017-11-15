@@ -1,6 +1,3 @@
-//go:generate kallax gen
-//go:generate proteus:generate
-
 package models
 
 import (
@@ -14,5 +11,9 @@ type Pair struct {
 	Base   *Asset      `fk:"base_id,inverse"`
 	Quote  *Asset      `fk:"quote_id,inverse"`
 
-	Markets []*Market `fk:"pair_id"`
+	Markets     []*Market     `fk:"pair_id"`
+	Differences []*Difference `fk:"pair_id"`
+	Orders      []*Order      `fk:"pair_id"`
+	Prices      []*Price      `fk:"pair_id"`
+	Trades      []*Trade      `fk:"pair_id"`
 }

@@ -1,5 +1,3 @@
-//go:generate kallax gen
-//go:generate proteus:generate
 
 package models
 
@@ -15,6 +13,4 @@ type Difference struct {
 	BaseExchange  *Exchange        `fk:"base_id,inverse"`
 	QuoteExchange *Exchange        `fk:"quote_id,inverse"`
 	Delta         float32          `kallax:"delta"`
-	Markets       []*Market        `fk:"exchange_id"`
-	Assets        []*ExchangeAsset `fk:"exchange_id"`
 }

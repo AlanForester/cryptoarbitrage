@@ -11,7 +11,7 @@ stop:
 env:
 		pwd := $$(pwd)
 		export GOBIN=$(pwd)/bin
-		export GOPATH=$(pwd):$$(pwd)/../..
+		export GOPATH=$(pwd):$$(pwd)/../..:~/go
 		export PATH=$(PATH):$$(pwd)/bin
 
 gen:

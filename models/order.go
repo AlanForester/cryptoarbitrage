@@ -1,6 +1,3 @@
-//go:generate kallax gen
-//go:generate proteus:generate
-
 package models
 
 import (
