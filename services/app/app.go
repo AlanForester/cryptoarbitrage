@@ -5,6 +5,8 @@ import (
 	. "CryptoArbitrage/services/arg-parser"
 	. "CryptoArbitrage/services"
 	. "CryptoArbitrage/providers/extractor"
+	"gopkg.in/src-d/go-kallax.v1"
+	"CryptoArbitrage/models"
 )
 
 var Application applicationModel
