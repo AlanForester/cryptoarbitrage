@@ -141,6 +141,14 @@
           "Reference": null,
           "NotNull": true,
           "Unique": false
+        },
+        {
+          "Name": "is_used_api",
+          "Type": "boolean",
+          "PrimaryKey": false,
+          "Reference": null,
+          "NotNull": true,
+          "Unique": false
         }
       ]
     },

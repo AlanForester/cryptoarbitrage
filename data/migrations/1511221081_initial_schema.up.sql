@@ -20,7 +20,8 @@ CREATE TABLE exchanges (
 	id serial NOT NULL PRIMARY KEY,
 	symbol text NOT NULL,
 	name text NOT NULL,
-	is_active boolean NOT NULL
+	is_active boolean NOT NULL,
+	is_used_api boolean NOT NULL
 );
 
 
