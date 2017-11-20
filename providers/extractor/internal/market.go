@@ -1,7 +1,7 @@
 package internal
 
 type MarketSet struct {
-	Markets []Market `json:"result"`
+	Markets []*Market `json:"result"`
 	Allowance      `json:"allowance"`
 }
 

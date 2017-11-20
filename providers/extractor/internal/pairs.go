@@ -1,7 +1,7 @@
 package internal
 
 type PairSet struct {
-	Pairs []Pair `json:"result"`
+	Pairs []*Pair `json:"result"`
 	Allowance      `json:"allowance"`
 }
 

@@ -1,6 +1,10 @@
-postgres:
-    host: 127.0.0.1
+app:
+  env: 'development'
+  debug: true
+storage:
+  postgres:
+    host: 10.0.1.200
     port: 5432
-    name: arb
-    user: arb
-    pass: arb
+    name: cryptrage
+    user: cryptrage
+    pass: cryptrage

@@ -7,7 +7,7 @@ type PricesSet struct {
 	Allowance      `json:"allowance"`
 }
 
-type Prices [] Price
+type Prices []*Price
 
 type Price struct {
 	Exchange string

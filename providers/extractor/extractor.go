@@ -19,7 +19,7 @@ const (
 
 type extractorModel struct{}
 
-func (t *extractorModel) GetAssets() []Asset {
+func (t *extractorModel) GetAssets() []*Asset {
 	response := HTTPClient.Get(getAssetsURL)
 	if response.StatusCode != 200 {
 		log.Fatalln(response.Error)
@@ -35,7 +35,7 @@ func (t *extractorModel) GetAssets() []Asset {
 	return data.Assets
 }
 
-func (t *extractorModel) GetPairs() []Pair {
+func (t *extractorModel) GetPairs() []*Pair {
 	response := HTTPClient.Get(getPairsURL)
 	if response.StatusCode != 200 {
 		log.Fatalln(response.Error)
@@ -51,7 +51,7 @@ func (t *extractorModel) GetPairs() []Pair {
 	return data.Pairs
 }
 
-func (t *extractorModel) GetMarkets() []Market {
+func (t *extractorModel) GetMarkets() []*Market {
 	response := HTTPClient.Get(getMarketsURL)
 	if response.StatusCode != 200 {
 		log.Fatalln(response.Error)
@@ -85,8 +85,8 @@ func (t *extractorModel) GetPrices() Prices {
 	for key, price := range data.Prices {
 		s := Split(key,":")
 		exchange, symbol := s[0], s[1]
-		priceModel := Price{Exchange: exchange, Symbol: symbol, Price: float32(price)}
-		prices = append(prices,priceModel)
+		priceModel := &Price{Exchange: exchange, Symbol: symbol, Price: float32(price)}
+		prices = append(prices, priceModel)
 	}
 	return prices
 }

@@ -1,7 +1,7 @@
 package internal
 
 type AssetSet struct {
-	Assets []Asset 		`json:"result"`
+	Assets []*Asset 		`json:"result"`
 	Allowance			`json:"allowance"`
 }
 

@@ -4,6 +4,7 @@ import (
 	"log"
 	. "crypto-arbitrage/services/arg-parser"
 	. "crypto-arbitrage/services"
+	"crypto-arbitrage/providers/extractor"
 )
 
 var Application *applicationModel
@@ -22,6 +23,10 @@ func (a *applicationModel) Loader() {
 
 func (a *applicationModel) start() {
 	log.Println("Application started!")
+	assets := extractor.Extractor.GetAssets()
+	for _, asset := range assets {
+		log.Println(asset.Name)
+	}
 	//cities := NewCityStore(DB.SQL)
 	//cities1, _ := cities.FindAll(NewCityQuery())
 	//
