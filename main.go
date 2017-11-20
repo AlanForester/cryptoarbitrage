@@ -1,7 +1,7 @@
 package main
 
 import (
-	. "CryptoArbitrage/services/app"
+	. "crypto-arbitrage/services/app"
 )
 
 func main() {

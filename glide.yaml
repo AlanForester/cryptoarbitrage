@@ -1,13 +1,20 @@
-package: CryptoArbitrage
+package: crypto-arbitrage
 ignore:
-- CryptoArbitrage
+- crypto-arbitrage
 import:
 - package: github.com/sevlyar/go-daemon
   version: v0.1.1
+- package: gopkg.in/src-d/go-kallax.v1
+  version: v1.3.1
+  subpackages:
+  - tests
+- package: github.com/garyburd/redigo
   subpackages:
   - git@github.com/sevlyar/go-daemon
 - package: github.com/garyburd/redigo
   version: v1.2.0
+  subpackages:
+  - redis
   subpackages:
   - git@github.com/garyburd/redigo
 - package: gopkg.in/urfave/cli.v1

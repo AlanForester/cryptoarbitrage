@@ -2,17 +2,17 @@ package services
 
 import (
 	goDaemon "github.com/sevlyar/go-daemon"
-	. "CryptoArbitrage/services/arg-parser/cli-args"
+	. "crypto-arbitrage/services/arg-parser/cli-args"
 	"log"
 	"syscall"
 	"os"
-	. "CryptoArbitrage/services/arg-parser"
+	. "crypto-arbitrage/services/arg-parser"
 )
 
 var Daemon DaemonModel
 
 type DaemonModel struct {
-	arg DaemonArgumentModel
+	arg DaemonArgumentModel `reflect:"arg"`
 }
 
 func (dc *DaemonModel) getContext() *goDaemon.Context {

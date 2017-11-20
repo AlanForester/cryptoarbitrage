@@ -6,13 +6,10 @@ import (
 
 var DaemonArgument DaemonArgumentModel
 
-var signal = flag.String("d", "", `Run application in daemon mode.
-		start — reloading the configuration file
-		stop — fast shutdown`)
-
 type DaemonArgumentModel struct {
-	Flag  *string
+	Name  string
 	Value string
+	Flag  *string
 }
 
 func (dc *DaemonArgumentModel) IsUsed() bool {
@@ -25,10 +22,13 @@ func (dc *DaemonArgumentModel) CheckValue(sig string) bool {
 
 func init() {
 	if DaemonArgument == (DaemonArgumentModel{}) {
-		flag.Parse()
 		da := new(DaemonArgumentModel)
-		da.Flag = signal
-		da.Value = *signal
+		da.Name = "d"
+		da.Flag = flag.String(da.Name, "", `Run application in daemon mode.
+		start — reloading the configuration file
+		stop — fast shutdown`)
+		flag.Parse()
+		da.Value = *da.Flag
 		DaemonArgument = *da
 	}
 }

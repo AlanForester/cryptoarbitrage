@@ -2,13 +2,13 @@ package extractor
 
 import (
 	"log"
-	. "CryptoArbitrage/helpers"
-	. "CryptoArbitrage/providers/extractor/internal"
+	. "crypto-arbitrage/helpers"
+	. "crypto-arbitrage/providers/extractor/internal"
 	"encoding/json"
 	. "strings"
 )
 
-var Extractor extractorModel
+var Extractor *extractorModel
 
 const (
 	getAssetsURL = "https://api.cryptowat.ch/assets"
@@ -92,5 +92,5 @@ func (t *extractorModel) GetPrices() Prices {
 }
 
 func init() {
-	Extractor = * &extractorModel{}
+	Extractor = &extractorModel{}
 }

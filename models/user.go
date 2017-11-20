@@ -1,8 +1,9 @@
+//go:generate kallax gen
+
 package models
 
 import (
 	"gopkg.in/src-d/go-kallax.v1"
-	"time"
 )
 
 type User struct {

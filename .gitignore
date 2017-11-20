@@ -39,3 +39,5 @@ _testmain.go
 /deploy/build/*
 /deploy/releases/*
 !.gitkeep
+/config/*
+!/config/sample.yaml
