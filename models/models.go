@@ -6605,6 +6605,10 @@ func (r *Price) ColumnAddress(col string) (interface{}, error) {
 		return types.Nullable(kallax.VirtualColumn("market_id", r, new(kallax.NumericID))), nil
 	case "price":
 		return &r.Price, nil
+	case "pair_symbols":
+		return types.Slice(&r.PairSymbols), nil
+	case "exchange_symbols":
+		return types.Slice(&r.ExchangeSymbols), nil
 
 	default:
 		return nil, fmt.Errorf("kallax: invalid column in Price: %s", col)
@@ -6640,6 +6644,10 @@ func (r *Price) Value(col string) (interface{}, error) {
 		return v, nil
 	case "price":
 		return r.Price, nil
+	case "pair_symbols":
+		return types.Slice(r.PairSymbols), nil
+	case "exchange_symbols":
+		return types.Slice(r.ExchangeSymbols), nil
 
 	default:
 		return nil, fmt.Errorf("kallax: invalid column in Price: %s", col)
@@ -7086,6 +7094,34 @@ func (q *PriceQuery) FindByMarket(v kallax.NumericID) *PriceQuery {
 // the Price property is equal to the passed value.
 func (q *PriceQuery) FindByPrice(cond kallax.ScalarCond, v float32) *PriceQuery {
 	return q.Where(cond(Schema.Price.Price, v))
+}
+
+// FindByPairSymbols adds a new filter to the query that will require that
+// the PairSymbols property contains all the passed values; if no passed values,
+// it will do nothing.
+func (q *PriceQuery) FindByPairSymbols(v ...string) *PriceQuery {
+	if len(v) == 0 {
+		return q
+	}
+	values := make([]interface{}, len(v))
+	for i, val := range v {
+		values[i] = val
+	}
+	return q.Where(kallax.ArrayContains(Schema.Price.PairSymbols, values...))
+}
+
+// FindByExchangeSymbols adds a new filter to the query that will require that
+// the ExchangeSymbols property contains all the passed values; if no passed values,
+// it will do nothing.
+func (q *PriceQuery) FindByExchangeSymbols(v ...string) *PriceQuery {
+	if len(v) == 0 {
+		return q
+	}
+	values := make([]interface{}, len(v))
+	for i, val := range v {
+		values[i] = val
+	}
+	return q.Where(kallax.ArrayContains(Schema.Price.ExchangeSymbols, values...))
 }
 
 // PriceResultSet is the set of results returned by a query to the
@@ -9506,13 +9542,15 @@ type schemaPair struct {
 
 type schemaPrice struct {
 	*kallax.BaseSchema
-	ID         kallax.SchemaField
-	CreatedAt  kallax.SchemaField
-	UpdatedAt  kallax.SchemaField
-	PairFK     kallax.SchemaField
-	ExchangeFK kallax.SchemaField
-	MarketFK   kallax.SchemaField
-	Price      kallax.SchemaField
+	ID              kallax.SchemaField
+	CreatedAt       kallax.SchemaField
+	UpdatedAt       kallax.SchemaField
+	PairFK          kallax.SchemaField
+	ExchangeFK      kallax.SchemaField
+	MarketFK        kallax.SchemaField
+	Price           kallax.SchemaField
+	PairSymbols     kallax.SchemaField
+	ExchangeSymbols kallax.SchemaField
 }
 
 type schemaTrade struct {
@@ -9789,14 +9827,18 @@ var Schema = &schema{
 			kallax.NewSchemaField("exchange_id"),
 			kallax.NewSchemaField("market_id"),
 			kallax.NewSchemaField("price"),
+			kallax.NewSchemaField("pair_symbols"),
+			kallax.NewSchemaField("exchange_symbols"),
 		),
-		ID:         kallax.NewSchemaField("id"),
-		CreatedAt:  kallax.NewSchemaField("created_at"),
-		UpdatedAt:  kallax.NewSchemaField("updated_at"),
-		PairFK:     kallax.NewSchemaField("pair_id"),
-		ExchangeFK: kallax.NewSchemaField("exchange_id"),
-		MarketFK:   kallax.NewSchemaField("market_id"),
-		Price:      kallax.NewSchemaField("price"),
+		ID:              kallax.NewSchemaField("id"),
+		CreatedAt:       kallax.NewSchemaField("created_at"),
+		UpdatedAt:       kallax.NewSchemaField("updated_at"),
+		PairFK:          kallax.NewSchemaField("pair_id"),
+		ExchangeFK:      kallax.NewSchemaField("exchange_id"),
+		MarketFK:        kallax.NewSchemaField("market_id"),
+		Price:           kallax.NewSchemaField("price"),
+		PairSymbols:     kallax.NewSchemaField("pair_symbols"),
+		ExchangeSymbols: kallax.NewSchemaField("exchange_symbols"),
 	},
 	Trade: &schemaTrade{
 		BaseSchema: kallax.NewBaseSchema(

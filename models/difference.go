@@ -12,4 +12,7 @@ type Difference struct {
 	BaseExchange  *Exchange        `fk:"base_id,inverse"`
 	QuoteExchange *Exchange        `fk:"quote_id,inverse"`
 	Delta         float32          `kallax:"delta"`
+
+	PairSymbol     string `kallax:",inline"`
+	ExchangeSymbol string `kallax:",inline"`
 }

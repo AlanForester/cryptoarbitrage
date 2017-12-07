@@ -13,6 +13,6 @@ type Price struct {
 	Market   *Market          `fk:"market_id,inverse"`
 	Price    float32          `kallax:"price"`
 
-	PairSymbol     string `kallax:",inline"`
-	ExchangeSymbol string `kallax:",inline"`
+	PairSymbols     []string `kallax:"pair_symbols"`
+	ExchangeSymbols []string `kallax:"exchange_symbols"`
 }

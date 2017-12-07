@@ -104,6 +104,22 @@
           "Reference": null,
           "NotNull": true,
           "Unique": false
+        },
+        {
+          "Name": "pair_symbol",
+          "Type": "text",
+          "PrimaryKey": false,
+          "Reference": null,
+          "NotNull": true,
+          "Unique": false
+        },
+        {
+          "Name": "exchange_symbol",
+          "Type": "text",
+          "PrimaryKey": false,
+          "Reference": null,
+          "NotNull": true,
+          "Unique": false
         }
       ]
     },
@@ -511,16 +527,16 @@
           "Unique": false
         },
         {
-          "Name": "pair_symbol",
-          "Type": "text",
+          "Name": "pair_symbols",
+          "Type": "text[]",
           "PrimaryKey": false,
           "Reference": null,
           "NotNull": true,
           "Unique": false
         },
         {
-          "Name": "exchange_symbol",
-          "Type": "text",
+          "Name": "exchange_symbols",
+          "Type": "text[]",
           "PrimaryKey": false,
           "Reference": null,
           "NotNull": true,
