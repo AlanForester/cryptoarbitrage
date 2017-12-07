@@ -17,7 +17,7 @@ On Ubuntu Precise (12.04), Trusty (14.04), Wily (15.10) or Xenial (16.04) you ca
 https://github.com/src-d/go-kallax
 
 ## Запуск
-Просто  `make run`
+Просто  `make run` после того как добавишь конфиг /config/development.yaml
 
 **Для след команд нужен kallax ORM**
 
