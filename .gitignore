@@ -38,6 +38,7 @@ _testmain.go
 /pkg/
 /deploy/build/*
 /deploy/releases/*
+/data/migrations/lock.json
 !.gitkeep
 /config/*
 !/config/sample.yaml

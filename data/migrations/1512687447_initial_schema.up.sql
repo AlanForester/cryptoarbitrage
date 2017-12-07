@@ -1,0 +1,5 @@
+BEGIN;
+
+ALTER TABLE pairs DROP COLUMN symbol;
+
+COMMIT;

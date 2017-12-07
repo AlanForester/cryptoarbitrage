@@ -1,0 +1,5 @@
+BEGIN;
+
+ALTER TABLE pairs ADD COLUMN symbol text NOT NULL;
+
+COMMIT;

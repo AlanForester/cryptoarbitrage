@@ -5401,8 +5401,6 @@ func (r *Pair) ColumnAddress(col string) (interface{}, error) {
 	switch col {
 	case "id":
 		return (*kallax.NumericID)(&r.ID), nil
-	case "symbol":
-		return &r.Symbol, nil
 	case "base_id":
 		return types.Nullable(kallax.VirtualColumn("base_id", r, new(kallax.NumericID))), nil
 	case "quote_id":
@@ -5418,8 +5416,6 @@ func (r *Pair) Value(col string) (interface{}, error) {
 	switch col {
 	case "id":
 		return r.ID, nil
-	case "symbol":
-		return r.Symbol, nil
 	case "base_id":
 		v := r.Model.VirtualColumn(col)
 		if v == nil {
@@ -6450,12 +6446,6 @@ func (q *PairQuery) FindByID(v ...kallax.NumericID) *PairQuery {
 		values[i] = val
 	}
 	return q.Where(kallax.In(Schema.Pair.ID, values...))
-}
-
-// FindBySymbol adds a new filter to the query that will require that
-// the Symbol property is equal to the passed value.
-func (q *PairQuery) FindBySymbol(v string) *PairQuery {
-	return q.Where(kallax.Eq(Schema.Pair.Symbol, v))
 }
 
 // FindByBase adds a new filter to the query that will require that
@@ -9535,7 +9525,6 @@ type schemaOrder struct {
 type schemaPair struct {
 	*kallax.BaseSchema
 	ID      kallax.SchemaField
-	Symbol  kallax.SchemaField
 	BaseFK  kallax.SchemaField
 	QuoteFK kallax.SchemaField
 }
@@ -9797,12 +9786,10 @@ var Schema = &schema{
 			},
 			true,
 			kallax.NewSchemaField("id"),
-			kallax.NewSchemaField("symbol"),
 			kallax.NewSchemaField("base_id"),
 			kallax.NewSchemaField("quote_id"),
 		),
 		ID:      kallax.NewSchemaField("id"),
-		Symbol:  kallax.NewSchemaField("symbol"),
 		BaseFK:  kallax.NewSchemaField("base_id"),
 		QuoteFK: kallax.NewSchemaField("quote_id"),
 	},
