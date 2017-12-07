@@ -18,4 +18,12 @@ https://github.com/src-d/go-kallax
 
 ## Запуск
 Просто  `make run`
-При изменении моделей `make migrations` Должен быть установлен kallax `cd ~/go && go get https://github.com/src-d/go-kallax/...`
+
+**Для след команд нужен kallax ORM**
+
+`cd ~/go && go get https://github.com/src-d/go-kallax/...`
+
+При изменении моделей:
+- Для создания миграций `make migrations` 
+- Для генерации моделей `make modelsgen`
+- Накатить миграции `make migrate action=up env=development`
