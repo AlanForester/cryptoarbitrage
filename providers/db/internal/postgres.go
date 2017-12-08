@@ -4,8 +4,8 @@ import (
 	_ "github.com/lib/pq"
 	"database/sql"
 	"fmt"
-	. "crypto-arbitrage/helpers"
-	. "crypto-arbitrage/providers/config"
+	. "cryptoarbitrage/helpers"
+	. "cryptoarbitrage/providers/config"
 )
 
 var Postgres *postgresModel

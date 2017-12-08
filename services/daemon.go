@@ -2,11 +2,11 @@ package services
 
 import (
 	goDaemon "github.com/sevlyar/go-daemon"
-	. "crypto-arbitrage/services/arg-parser/cli-args"
+	. "cryptoarbitrage/services/arg-parser/cli-args"
 	"log"
 	"syscall"
 	"os"
-	. "crypto-arbitrage/services/arg-parser"
+	. "cryptoarbitrage/services/arg-parser"
 )
 
 var Daemon DaemonModel
@@ -23,7 +23,7 @@ func (dc *DaemonModel) getContext() *goDaemon.Context {
 		LogFilePerm: 0640,
 		WorkDir:     "./",
 		Umask:       027,
-		Args:        []string{"[crypto-arbitrage]", "-d", "daemon"},
+		Args:        []string{"[cryptoarbitrage]", "-d", "daemon"},
 	}
 }
 

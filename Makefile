@@ -1,6 +1,6 @@
 # ./Makefile
 VERSION := $(shell date +'%Y%m%d%H').$(shell git rev-parse --short=8 HEAD)
-NAME := $(shell echo crypto-arbitrage)
+NAME := $(shell echo cryptoarbitrage)
 
 GOPWD := $(shell pwd)
 GOBASEDIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST)))/../..)

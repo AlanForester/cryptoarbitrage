@@ -3,7 +3,7 @@ package db
 import (
 	_ "github.com/lib/pq"
 	"database/sql"
-	. "crypto-arbitrage/providers/db/internal"
+	. "cryptoarbitrage/providers/db/internal"
 )
 
 var DB *dbModel

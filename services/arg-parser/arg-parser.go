@@ -1,7 +1,7 @@
 package arg_parser
 
 import (
-	. "crypto-arbitrage/services/arg-parser/cli-args"
+	. "cryptoarbitrage/services/arg-parser/cli-args"
 )
 
 var ArgumentParser ArgumentParserModel

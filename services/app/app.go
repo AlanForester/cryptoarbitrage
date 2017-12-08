@@ -2,9 +2,9 @@ package app
 
 import (
 	"log"
-	. "crypto-arbitrage/services/arg-parser"
-	. "crypto-arbitrage/services"
-	"crypto-arbitrage/providers/extractor"
+	. "cryptoarbitrage/services/arg-parser"
+	. "cryptoarbitrage/services"
+	"cryptoarbitrage/providers/extractor"
 )
 
 var Application *applicationModel

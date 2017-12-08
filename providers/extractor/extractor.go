@@ -2,8 +2,8 @@ package extractor
 
 import (
 	"log"
-	. "crypto-arbitrage/helpers"
-	. "crypto-arbitrage/providers/extractor/internal"
+	. "cryptoarbitrage/helpers"
+	. "cryptoarbitrage/providers/extractor/internal"
 	"encoding/json"
 	. "strings"
 )

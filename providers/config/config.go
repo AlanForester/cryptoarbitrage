@@ -2,8 +2,8 @@ package config
 
 import (
 	"io/ioutil"
-	. "crypto-arbitrage/services/arg-parser"
-	. "crypto-arbitrage/helpers"
+	. "cryptoarbitrage/services/arg-parser"
+	. "cryptoarbitrage/helpers"
 	"fmt"
 	"gopkg.in/yaml.v2"
 )
